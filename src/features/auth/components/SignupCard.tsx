@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 
 import { FaGithub } from "react-icons/fa";
@@ -27,7 +28,7 @@ import { signupSchema } from "../schemas";
 import { useSignup } from "../api/use-signup";
 
 export const SignupCard = () => {
-  const { mutate } = useSignup();
+  const { mutate, isPending } = useSignup();
   const form = useForm<z.infer<typeof signupSchema>>({
     resolver: zodResolver(signupSchema),
     defaultValues: {
@@ -116,7 +117,11 @@ export const SignupCard = () => {
               )}
             />
 
-            <Button disabled={false} size={"lg"} className="w-full">
+            <Button
+              disabled={isPending}
+              size={"lg"}
+              className="w-full"
+            >
               Sign Up
             </Button>
           </form>
@@ -128,7 +133,7 @@ export const SignupCard = () => {
       <CardContent className="p-7 flex flex-col gap-y-4">
         <Button
           className="w-full"
-          disabled={false}
+          disabled={isPending}
           variant={"secondary"}
           size={"lg"}
         >
@@ -137,7 +142,7 @@ export const SignupCard = () => {
         </Button>
         <Button
           className="w-full"
-          disabled={false}
+          disabled={isPending}
           variant={"secondary"}
           size={"lg"}
         >

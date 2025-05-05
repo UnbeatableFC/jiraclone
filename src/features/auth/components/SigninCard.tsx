@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 
 import { FaGithub } from "react-icons/fa";
@@ -26,7 +27,7 @@ import { loginSchema } from "../schemas";
 import { useLogin } from "../api/use-login";
 
 export const SigninCard = () => {
-  const { mutate } = useLogin();
+  const { mutate, isPending } = useLogin();
 
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
@@ -37,7 +38,7 @@ export const SigninCard = () => {
   });
 
   const onSubmit = (values: z.infer<typeof loginSchema>) => {
-    mutate({json : values});
+    mutate({ json: values });
   };
   return (
     <Card className="w-full h-full md:w-[487px] border-none shadow-none">
@@ -61,6 +62,7 @@ export const SigninCard = () => {
                   <FormControl>
                     <Input
                       type="email"
+                      disabled={isPending}
                       placeholder="Enter Email Address"
                       {...field}
                     />
@@ -78,6 +80,7 @@ export const SigninCard = () => {
                   <FormControl>
                     <Input
                       type="password"
+                      disabled={isPending}
                       placeholder="Enter Password"
                       {...field}
                     />
@@ -87,7 +90,11 @@ export const SigninCard = () => {
               )}
             />
 
-            <Button disabled={false} size={"lg"} className="w-full">
+            <Button
+              disabled={isPending}
+              size={"lg"}
+              className="w-full"
+            >
               Login
             </Button>
           </form>
@@ -99,7 +106,7 @@ export const SigninCard = () => {
       <CardContent className="p-7 flex flex-col gap-y-4">
         <Button
           className="w-full"
-          disabled={false}
+          disabled={isPending}
           variant={"secondary"}
           size={"lg"}
         >
@@ -108,7 +115,7 @@ export const SigninCard = () => {
         </Button>
         <Button
           className="w-full"
-          disabled={false}
+          disabled={isPending}
           variant={"secondary"}
           size={"lg"}
         >
