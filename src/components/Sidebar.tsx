@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { DottedSeparator } from "./dotted-separator";
 import Navigation from "./Navigation";
+import WorkspaceSwitcher from "./WorkspaceSwitcher";
 
 const Sidebar = () => {
   return (
@@ -17,6 +18,8 @@ const Sidebar = () => {
           <span className="font-bold text-2xl">JiraClone</span>
         </div>
       </Link>
+      <DottedSeparator classname="h-0 my-4" />
+      <WorkspaceSwitcher />
       <DottedSeparator classname="h-0 my-4" />
       <Navigation />
     </aside>

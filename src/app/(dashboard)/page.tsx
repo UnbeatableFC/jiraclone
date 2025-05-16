@@ -1,5 +1,7 @@
 "use server";
 import { getCurrent } from "@/features/auth/actions";
+import { getWorkspaces } from "@/features/workspaces/actions";
+// import CreateWorkspaceForm from "@/features/workspaces/components/CreateWorkspaceForm";
 import { redirect } from "next/navigation";
 
 export default async function Home() {
@@ -8,9 +10,17 @@ export default async function Home() {
     redirect("/sign-in");
   }
 
-  return (
-    <div>
-      This is a home page
-    </div>
-  );
+  const workspaces = await getWorkspaces();
+  if (workspaces.total === 0) {
+    redirect("/workspaces/create");
+  } else {
+    redirect(`/workspaces/${workspaces.documents[0].$id}`);
+  }
+
+  // return (
+  //   <div className="bg-neutral-500 p-4 h-full">
+  //     <CreateWorkspaceForm />
+  //     Home Page
+  //   </div>
+  // );
 }
