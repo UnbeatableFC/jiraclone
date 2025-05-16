@@ -22,7 +22,7 @@ export const useLogout = () => {
       if (!response.ok) {
         throw new Error("Failed to Logout");
       }
-      return await response.json;
+      return await response.json();
     },
     onSuccess: () => {
       toast.success("Logged out successfully");

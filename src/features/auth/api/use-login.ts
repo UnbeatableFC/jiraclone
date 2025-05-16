@@ -21,7 +21,7 @@ export const useLogin = () => {
       if (!response.ok) {
         throw new Error("Failed to Log in");
       }
-      return await response.json;
+      return await response.json();
     },
     onSuccess: () => {
       toast.success("Logged In");

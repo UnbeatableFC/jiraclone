@@ -21,7 +21,7 @@ export const useSignup = () => {
       if(!response.ok) {
         throw new Error("Failed to Register")
       }
-      return await response.json;
+      return await response.json();
     },
     onSuccess: () => {
       toast.success("Successfully Registered");

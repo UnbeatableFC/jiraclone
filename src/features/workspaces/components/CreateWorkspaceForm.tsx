@@ -27,6 +27,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { useCreateWorkspace } from "../api/use-create-workspace";
 import { ChangeEvent, useRef } from "react";
 import { ImageIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 
 interface CreateWorkspaceProps {
@@ -141,16 +142,34 @@ const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceProps) => {
                           onChange={handleImageChange}
                           disabled={isPending}
                         />
-                        <Button
-                          type="button"
-                          disabled={isPending}
-                          variant={"tetiary"}
-                          size={"xs"}
-                          className="w-fit mt-2"
-                          onClick={() => inputRef.current?.click()}
-                        >
-                          Upload Image
-                        </Button>
+                        {field.value ? (
+                          <Button
+                            type="button"
+                            disabled={isPending}
+                            variant={"destructive"}
+                            size={"xs"}
+                            className="w-fit mt-2"
+                            onClick={() => {
+                              field.onChange(null);
+                              if (inputRef.current) {
+                                inputRef.current.value = "";
+                              }
+                            }}
+                          >
+                            Remove Image
+                          </Button>
+                        ) : (
+                          <Button
+                            type="button"
+                            disabled={isPending}
+                            variant={"tetiary"}
+                            size={"xs"}
+                            className="w-fit mt-2"
+                            onClick={() => inputRef.current?.click()}
+                          >
+                            Upload Image
+                          </Button>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -165,7 +184,10 @@ const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceProps) => {
                 onClick={onCancel}
                 variant={"secondary"}
                 disabled={isPending}
-                className="cursor-pointer"
+                className={cn(
+                  "cursor-pointer",
+                  !onCancel && "invisible"
+                )}
               >
                 Cancel
               </Button>
