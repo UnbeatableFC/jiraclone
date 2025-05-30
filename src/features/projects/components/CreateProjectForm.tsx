@@ -35,7 +35,7 @@ interface CreateProjectFormProps {
   onCancel?: () => void;
 }
 
-const CreateWorkspaceForm = ({
+const CreateProjectForm = ({
   onCancel,
 }: CreateProjectFormProps) => {
   const workspaceId = useWorkspaceId();
@@ -215,4 +215,4 @@ const CreateWorkspaceForm = ({
   );
 };
 
-export default CreateWorkspaceForm;
+export default CreateProjectForm;
