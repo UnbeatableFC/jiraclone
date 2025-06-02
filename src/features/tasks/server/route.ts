@@ -318,7 +318,7 @@ const app = new Hono()
       task.assigneeId
     );
 
-    const user = await users.get(member.userId);
+    const user = await users.users.get(member.userId);
 
     const assignee = {
       ...member,
@@ -329,7 +329,7 @@ const app = new Hono()
     return c.json({
       data: {
         ...task,
-        projectId,
+        project,
         assignee,
       },
     });

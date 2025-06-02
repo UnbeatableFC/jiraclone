@@ -14,6 +14,7 @@ import { useDeleteTask } from "../api/use-delete-tasks";
 import { useConfirm } from "@/hooks/use-confirm";
 import { useRouter } from "next/navigation";
 import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
+import { useEditTaskModal } from "../hooks/use-edit-task-modal";
 
 interface TaskActionsProps {
   id: string;
@@ -28,6 +29,8 @@ export const TaskActions = ({
 }: TaskActionsProps) => {
   const workspaceId = useWorkspaceId();
   const router = useRouter();
+
+  const { open } = useEditTaskModal();
 
   const [ConfirmDialog, confirm] = useConfirm(
     "Delete Task",
@@ -73,7 +76,7 @@ export const TaskActions = ({
             Open Project
           </DropdownMenuItem>
           <DropdownMenuItem
-            onClick={() => {}}
+            onClick={() => open(id)}
             className="font-medium p-[10px]"
           >
             <PencilIcon className="size-4 mr-2 stroke-2" />
