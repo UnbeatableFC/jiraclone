@@ -1,13 +1,9 @@
-"use client";
-
 import { Loader } from "lucide-react";
 
-const LoadingPage = () => {
+export const PageLoader = () => {
   return (
-    <div className="h-screen flex items-center justify-center">
+    <div className="flex items-center justify-center h-screen">
       <Loader className="size-6 animate-spin text-muted-foreground" />
     </div>
   );
 };
-
-export default LoadingPage;
