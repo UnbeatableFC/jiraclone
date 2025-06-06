@@ -1,5 +1,5 @@
 import { JSX, useState } from "react";
-import { Button, type ButtonProps } from "@/components/ui/button";
+import { Button, ButtonVariant } from "@/components/ui/button";
 import ResponsiveModal from "../components/responsive-modal";
 import {
   Card,
@@ -12,13 +12,13 @@ import {
 export const useConfirm = (
   title: string,
   message: string,
-  variant: ButtonProps["variant"] = "primary"
+  variant: ButtonVariant = "primary"
 ): [() => JSX.Element, () => Promise<unknown>] => {
   const [promise, setPromise] = useState<{
     resolve: (value: boolean) => void;
   } | null>(null);
   const confirm = () => {
-   return new Promise((resolve) => {
+    return new Promise((resolve) => {
       setPromise({ resolve });
     });
   };

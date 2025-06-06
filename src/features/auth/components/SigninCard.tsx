@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 
+import { signUpWithGithub } from "@/lib/oauth";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import {
@@ -118,6 +119,7 @@ export const SigninCard = () => {
           disabled={isPending}
           variant={"secondary"}
           size={"lg"}
+          onClick={() => signUpWithGithub()}
         >
           <FaGithub className="mr-2 size-5" />
           Login with GitHub

@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const createProjectSchema = z.object({
-  workspaceId: z.string(),
+  workspaceId: z.string().optional(),
   name: z.string().trim().min(1, "Required"),
   image: z
     .union([

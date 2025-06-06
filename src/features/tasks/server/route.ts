@@ -143,7 +143,7 @@ const app = new Hono()
           const user = await users.get(member.userId);
           return {
             ...member,
-            name: user.name,
+            name: user.name || user.email,
             email: user.email,
           };
         })
@@ -191,7 +191,7 @@ const app = new Hono()
 
       const member = await getMember({
         databases,
-        workspaceId,
+        workspaceId: String(workspaceId),
         userId: user.$id,
       });
 
@@ -204,7 +204,7 @@ const app = new Hono()
         TASKS_ID,
         [
           Query.equal("status", status),
-          Query.equal("workspaceId", workspaceId),
+          Query.equal("workspaceId", String(workspaceId)),
           Query.orderAsc("position"),
           Query.limit(1),
         ]
@@ -322,7 +322,7 @@ const app = new Hono()
 
     const assignee = {
       ...member,
-      name: user.name,
+      name: user.name || user.email,
       email: user.email,
     };
 
